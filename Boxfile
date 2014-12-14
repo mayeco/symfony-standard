@@ -1,0 +1,36 @@
+--- 
+web1:
+
+  default_gateway: app.php
+  document_root: web
+
+  index_list: 
+    - app.php
+
+  php_extensions: 
+    - intl
+    - mbstring
+    - xsl
+    - mysql
+    - pdo_mysql
+    - zip
+    - curl
+  zend_extensions:
+    - xcache
+
+  php_magic_quotes_gpc: "0"
+  php_register_globals: "0"
+  php_session_autostart: "0"
+  php_short_open_tag: "0"
+  php_version: "5.4.14"
+
+  shared_writable_dirs: 
+    - app/cache
+    - app/logs
+
+  after_build: 
+    - "curl -sS https://getcomposer.org/installer | php"
+    - "php composer.phar install --prefer-source --optimize-autoloader --no-progress"
+  after_deploy: 
+    - "php app/console cache:clear --env=prod"
+    - "php app/console cache:clear --env=dev"
