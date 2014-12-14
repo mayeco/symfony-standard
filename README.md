@@ -1,4 +1,4 @@
-Symfony Pagodabox Edition
+Symfony [Pagodabox](http://www.pagodabox.com) Edition
 ========================
 
 Set your global-vars:
